@@ -1,0 +1,119 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+  struct meuFilme{
+    string nomeFilme;
+    string generoFilme;
+    int duracaoFilme;
+  };
+
+void cadastrarFilme(meuFilme *f){
+    cout << "Nome: ";
+    cin.ignore();
+    getline (cin, f->nomeFilme);
+    cout << "Genero: ";
+    getline (cin, f->generoFilme);
+    cout << "Duracao: ";
+    cin >> f->duracaoFilme;
+
+}
+
+void carregarFilme(meuFilme *c){
+    fstream meuArquivo;
+    meuArquivo.open("filme.txt", ios::out | ios::in);
+
+    string linha;
+    getline(meuArquivo, linha);
+    string c->nomeFilme;
+    getline(meuArquivo, linha);
+    string c->generoFilme;
+    getline(meuArquivo, linha);
+    int c->duracaoFilme = stoi(linha);
+
+
+    meuArquivo.close();
+
+    meuArquivo.open("filme.txt", ios::out | ios :: app);
+
+    meuArquivo << c->nomeFilme << endl;
+    meuArquivo << c->generoFilme << endl;
+    meuArquivo << c->duracaoFilme << endl;
+
+    meuArquivo.close();
+
+}
+
+
+void salvarInfo(meuFilme *i){
+    fstream meuArquivo;
+
+    meuArquivo.open("filme.txt", ios::out | ios::app);
+
+    meuArquivo << "Nome: " <<  i->nomeFilme << endl;;
+    meuArquivo << "Genero: " << i->generoFilme << endl;
+    meuArquivo << "Duracao: " << i->duracaoFilme << " minutos" << endl;
+
+    meuArquivo.close();
+}
+
+
+
+
+void listarFilme(meuFilme *F){
+    cout << "Nome: " << F->nomeFilme << endl;
+    cout << "Genero: " <<  F->generoFilme << endl;
+    cout << "Duracao: " <<  F->duracaoFilme << " minutos" << endl;
+    cout << endl;
+}
+
+void menu(){
+    cout << "----------------- MENU ----------------- " << endl;
+    cout << "1 - CADASTRAR FILME" << endl;
+    cout << "2 - MOSTRAR INFOS DO FILME" << endl;
+    cout << "3 - SALVAR INFORMACOES" << endl;
+    cout << "4 - CARREGAR INFORMACOES" << endl;
+    cout << "5 - SAIR" << endl;
+}
+
+int main(){
+
+
+
+
+    int opcao;
+    meuFilme esteFilme;
+
+    menu();
+    cin >> opcao;
+    while(opcao != 5){
+        switch(opcao){
+            case 1:
+                cadastrarFilme(&esteFilme);
+                break;
+            case 2:
+                listarFilme(&esteFilme);
+                break;
+            case 3:
+                salvarInfo(&esteFilme);
+                break;
+            case 4:
+
+
+        }
+    menu();
+    cin >> opcao;
+    }
+
+
+
+
+
+
+
+
+
+    return 0;
+}
